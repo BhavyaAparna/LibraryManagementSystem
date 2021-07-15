@@ -13,6 +13,7 @@
 	<mapping class="com.dto.FacultyDetails"/>
 	<mapping class="com.dto.StudentDetails"/>
 	<mapping class="com.dto.ThesisDetails"/>
+	<mapping class="com.dto.BookingDetails"/>
 	
   </session-factory>
 </hibernate-configuration>

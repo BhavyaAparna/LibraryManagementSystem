@@ -115,6 +115,33 @@ public class HibernateTemplate {
 		return result;
 		
 	}
+	public static List<Object> getAllBookingDetails()
+	{
+		String queryString = "from BookingDetails";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		List result = query.list();
+		return result;
+		
+	}
+	public static List<Object> getAllPdfs()
+	{
+		String queryString = "from ThesisDetails";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		List result = query.list();
+		return result;
+		
+	}
+	
+	public static List<Object> getObjectBySubject(String bookSubject,int bookCount)
+	{
+		String queryString = "from BookDetails c where c.bookSubject = :bookSubject and c.bookCount != :bookCount)";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		query.setString("bookSubject", bookSubject);
+		query.setInteger("bookCount", bookCount);
+		List result = query.list();
+		return result;
+	}
+	
 	
 	public static List<Object> getObjectListVideo(String itemImage)
 	{
@@ -168,12 +195,12 @@ public class HibernateTemplate {
         session.getTransaction().commit();
         session.close();
     }
-	public static void cancel(int itemId){
+	public static void cancel(int bookId){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        String sql = "delete FROM FavouriteDetails WHERE itemId = :itemId";
+        String sql = "delete FROM BookingDetails WHERE bookId = :bookId";
         Query query = session.createQuery(sql);
-        query.setInteger("itemId", itemId);
+        query.setInteger("bookId", bookId);
          int row = query.executeUpdate();
          if (row == 0)
              System.out.println("Doesnt deleted any row!");
@@ -182,25 +209,25 @@ public class HibernateTemplate {
         session.getTransaction().commit();
         session.close();
     }
-	public static void updateRequest(int categoryId,String status){
+	public static void updateRequest(int bookId,String itemStatus){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        String sql = "update CategoryDetails c set c.status = :status where c.categoryId = :categoryId";
+        String sql = "update BookingDetails c set c.itemStatus = :itemStatus where c.bookId = :bookId";
         Query query = session.createQuery(sql);
-        query.setInteger("categoryId", categoryId);
-        query.setString("status",status);
+        query.setInteger("bookId", bookId);
+        query.setString("itemStatus",itemStatus);
         int row = query.executeUpdate();
         System.out.println("Updated");
         session.getTransaction().commit();
         session.close();
     }
-	public static void updateFavourite(int itemId,String favourite){
+	public static void updateStatus(int bookId,int bookCount){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        String sql = "update ItemDetails c set c.favourite = :favourite where c.itemId = :itemId";
+        String sql = "update BookDetails c set c.bookCount = :bookCount where c.bookId = :bookId";
         Query query = session.createQuery(sql);
-        query.setInteger("itemId", itemId);
-        query.setString("favourite",favourite);
+        query.setInteger("bookId", bookId);
+        query.setInteger("bookCount",bookCount);
         int row = query.executeUpdate();
         System.out.println("Updated");
         session.getTransaction().commit();

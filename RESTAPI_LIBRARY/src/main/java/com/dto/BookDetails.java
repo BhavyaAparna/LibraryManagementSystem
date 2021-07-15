@@ -16,7 +16,7 @@ public class BookDetails {
 	private String bookAuthor;
 	private String bookSubject;
 	private int bookPublishingYear;
-	private String bookStatus;
+	private int bookCount;
 	
 	@ManyToOne
 	private StudentDetails studentDetails;
@@ -72,14 +72,6 @@ public class BookDetails {
 		this.bookPublishingYear = bookPublishingYear;
 	}
 
-	public String getBookStatus() {
-		return bookStatus;
-	}
-
-	public void setBookStatus(String bookStatus) {
-		this.bookStatus = bookStatus;
-	}
-
 	public StudentDetails getStudentDetails() {
 		return studentDetails;
 	}
@@ -96,13 +88,24 @@ public class BookDetails {
 		this.facultyDetails = facultyDetails;
 	}
 
+	
+	public int getBookCount() {
+		return bookCount;
+	}
+
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
+	}
+
 	@Override
 	public String toString() {
 		return "BookDetails [bookId=" + bookId + ", bookName=" + bookName + ", bookImage=" + bookImage + ", bookAuthor="
 				+ bookAuthor + ", bookSubject=" + bookSubject + ", bookPublishingYear=" + bookPublishingYear
-				+ ", bookStatus=" + bookStatus + ", studentDetails=" + studentDetails + ", facultyDetails="
-				+ facultyDetails + "]";
+				+" bookCount=" + bookCount + ", studentDetails=" + studentDetails
+				+ ", facultyDetails=" + facultyDetails + "]";
 	}
+
+	
 	
 	
 

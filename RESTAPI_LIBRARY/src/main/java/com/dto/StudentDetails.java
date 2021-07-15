@@ -27,6 +27,7 @@ public class StudentDetails {
 	@OneToMany(mappedBy="studentDetails",fetch = FetchType.LAZY)
 	private List<BookDetails> bookDetails = new ArrayList<BookDetails>();
 	
+	
 	public int getStudentId() {
 		return studentId;
 	}

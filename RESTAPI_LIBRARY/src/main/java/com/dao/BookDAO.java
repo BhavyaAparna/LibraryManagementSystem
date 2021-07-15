@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 
 import com.dto.BookDetails;
+import com.dto.StudentDetails;
 import com.ts.db.HibernateTemplate;
 
 public class BookDAO {
@@ -12,6 +13,10 @@ public class BookDAO {
 	}
 	public List<BookDetails> getAllBookDetailsByImage() {
 		List<BookDetails> bookDetails=(List)HibernateTemplate.getObjectByBookImage();
+		return bookDetails;	
+	}
+	public List<BookDetails> getBookBySubject(String bookSubject,int bookCount) {
+		List<BookDetails> bookDetails=(List)HibernateTemplate.getObjectBySubject(bookSubject,bookCount);
 		return bookDetails;	
 	}
 }
